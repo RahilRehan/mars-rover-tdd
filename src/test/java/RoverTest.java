@@ -23,11 +23,29 @@ public class RoverTest {
     }
 
     @Test
-    void shouldReturnNextValidPositionWithMultipleMoveCommand() {
+    void shouldReturnNextValidPositionWithMultipleMoveCommands() {
         int xPos = 1, yPos = 2;
         String direction = "E", commands = "MMM";
         Rover rover = new Rover(xPos, yPos, direction);
         String finalDirection = rover.process(commands);
         assertEquals("4 2 E", finalDirection);
+    }
+
+    @Test
+    void shouldReturnValidPositionWithTurnRightCommand() {
+        int xPos = 1, yPos = 2;
+        String direction = "E", commands = "R";
+        Rover rover = new Rover(xPos, yPos, direction);
+        String finalDirection = rover.process(commands);
+        assertEquals("1 2 S", finalDirection);
+    }
+
+    @Test
+    void shouldReturnValidPositionWithMultipleTurnRightCommands() {
+        int xPos = 1, yPos = 2;
+        String direction = "E", commands = "RRR";
+        Rover rover = new Rover(xPos, yPos, direction);
+        String finalDirection = rover.process(commands);
+        assertEquals("1 2 N", finalDirection);
     }
 }

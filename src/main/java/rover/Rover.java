@@ -8,7 +8,7 @@ public class Rover {
 
     private Integer xPos;
     private Integer yPos;
-    private final String direction;
+    private String direction;
 
     public Rover(int xPos, int yPos, String direction) {
         this.xPos = xPos;
@@ -37,8 +37,36 @@ public class Rover {
                         break;
                 }
             }
+            else if(isRight(command)){
+                turnRight(direction);
+            }
         }
         return processPosition(xPos, yPos, direction);
+    }
+
+    private void turnRight(String direction) {
+        switch (direction) {
+            case Direction.NORTH:
+                changeDirection(Direction.EAST);
+                break;
+            case Direction.SOUTH:
+                changeDirection(Direction.WEST);
+                break;
+            case Direction.EAST:
+                changeDirection(Direction.SOUTH);
+                break;
+            default:
+                changeDirection(Direction.NORTH);
+                break;
+        }
+    }
+
+    private void changeDirection(String newDirection) {
+        this.direction = newDirection;
+    }
+
+    private boolean isRight(String command) {
+        return command.equals("R");
     }
 
     private boolean isEmpty(String commands){
