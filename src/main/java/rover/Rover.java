@@ -1,7 +1,8 @@
 package rover;
 
 import constants.Direction;
-import constants.Command;
+
+import static constants.Command.*;
 import static processing.Processing.processPosition;
 
 public class Rover {
@@ -65,14 +66,6 @@ public class Rover {
         this.direction = newDirection;
     }
 
-    private boolean isRight(String command) {
-        return command.equals("R");
-    }
-
-    private boolean isEmpty(String commands){
-        return commands.equals("");
-    }
-
     private void moveWest() {
         xPos -= 1;
     }
@@ -87,14 +80,6 @@ public class Rover {
 
     private void moveNorth() {
         yPos += 1;
-    }
-
-    private String[] getSplit(String commands) {
-        return commands.split("");
-    }
-
-    private boolean isMove(String command){
-        return command.equals(Command.MOVE);
     }
 
 }
