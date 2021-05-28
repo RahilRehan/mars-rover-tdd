@@ -17,28 +17,48 @@ public class Rover {
     }
 
     public String process(String commands) {
-        if(commands.equals("")) {
+        if(isEmpty(commands)) {
             return processPosition(xPos, yPos, direction);
         }
         for(String command: getSplit(commands)){
             if(isMove(command)){
                 switch (direction) {
                     case Direction.NORTH:
-                        yPos += 1;
+                        moveNorth();
                         break;
                     case Direction.SOUTH:
-                        yPos -= 1;
+                        moveSouth();
                         break;
                     case Direction.EAST:
-                        xPos += 1;
+                        moveEast();
                         break;
                     default:
-                        xPos -= 1;
+                        moveWest();
                         break;
                 }
             }
         }
         return processPosition(xPos, yPos, direction);
+    }
+
+    private boolean isEmpty(String commands){
+        return commands.equals("");
+    }
+
+    private void moveWest() {
+        xPos -= 1;
+    }
+
+    private void moveEast() {
+        xPos += 1;
+    }
+
+    private void moveSouth() {
+        yPos -= 1;
+    }
+
+    private void moveNorth() {
+        yPos += 1;
     }
 
     private String[] getSplit(String commands) {

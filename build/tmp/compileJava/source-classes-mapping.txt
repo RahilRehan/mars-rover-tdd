@@ -2,3 +2,7 @@ processing/Processing.java
  processing.Processing
 rover/Rover.java
  rover.Rover
+constants/Direction.java
+ constants.Direction
+constants/Command.java
+ constants.Command
