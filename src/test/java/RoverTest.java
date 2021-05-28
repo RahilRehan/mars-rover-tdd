@@ -21,4 +21,13 @@ public class RoverTest {
         String finalDirection = rover.move(commands);
         assertEquals("1 3 N", finalDirection);
     }
+
+    @Test
+    void shouldReturnNextValidPositionWithMultipleMoveCommand() {
+        int xPos = 1, yPos = 2;
+        String direction = "E", commands = "MMM";
+        Rover rover = new Rover(xPos, yPos, direction);
+        String finalDirection = rover.move(commands);
+        assertEquals("4 2 E", finalDirection);
+    }
 }
