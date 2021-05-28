@@ -1,4 +1,4 @@
-package constants;
+package utils;
 
 public class Command {
     public static final String MOVE="M";

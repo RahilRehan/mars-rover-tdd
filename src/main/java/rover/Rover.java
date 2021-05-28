@@ -1,8 +1,8 @@
 package rover;
 
-import constants.Direction;
+import utils.Direction;
 
-import static constants.Command.*;
+import static utils.Command.*;
 import static processing.Processing.processPosition;
 
 public class Rover {
@@ -40,9 +40,28 @@ public class Rover {
             }
             else if(isRight(command)){
                 turnRight(direction);
+            }else{
+                turnLeft(direction);
             }
         }
         return processPosition(xPos, yPos, direction);
+    }
+
+    private void turnLeft(String direction) {
+        switch (direction) {
+            case Direction.NORTH:
+                changeDirection(Direction.WEST);
+                break;
+            case Direction.SOUTH:
+                changeDirection(Direction.EAST);
+                break;
+            case Direction.EAST:
+                changeDirection(Direction.NORTH);
+                break;
+            default:
+                changeDirection(Direction.SOUTH);
+                break;
+        }
     }
 
     private void turnRight(String direction) {

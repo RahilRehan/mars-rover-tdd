@@ -48,4 +48,22 @@ public class RoverTest {
         String finalDirection = rover.process(commands);
         assertEquals("1 2 N", finalDirection);
     }
+
+    @Test
+    void shouldReturnValidPositionWithTurnLeftCommand() {
+        int xPos = 1, yPos = 2;
+        String direction = "E", commands = "L";
+        Rover rover = new Rover(xPos, yPos, direction);
+        String finalDirection = rover.process(commands);
+        assertEquals("1 2 N", finalDirection);
+    }
+
+    @Test
+    void shouldReturnValidPositionWithMultipleTurnLeftCommands() {
+        int xPos = 1, yPos = 2;
+        String direction = "E", commands = "LLL";
+        Rover rover = new Rover(xPos, yPos, direction);
+        String finalDirection = rover.process(commands);
+        assertEquals("1 2 S", finalDirection);
+    }
 }

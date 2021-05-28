@@ -1,8 +1,8 @@
+utils/Direction.java
+ utils.Direction
 processing/Processing.java
  processing.Processing
 rover/Rover.java
  rover.Rover
-constants/Direction.java
- constants.Direction
-constants/Command.java
- constants.Command
+utils/Command.java
+ utils.Command

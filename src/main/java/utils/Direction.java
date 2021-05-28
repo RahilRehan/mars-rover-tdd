@@ -1,4 +1,4 @@
-package constants;
+package utils;
 
 public class Direction {
     public static final String NORTH = "N";

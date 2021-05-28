@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RoverTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-05-28T14:32:09" hostname="Rahils-MacBook-Pro.local" time="0.026">
+<testsuite name="RoverTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-05-28T16:32:42" hostname="Rahils-MacBook-Pro.local" time="0.032">
   <properties/>
-  <testcase name="shouldReturnNextValidPositionWithMultipleMoveCommands()" classname="RoverTest" time="0.019"/>
-  <testcase name="shouldReturnNextValidPositionWithMoveCommand()" classname="RoverTest" time="0.001"/>
-  <testcase name="shouldReturnValidPositionWithTurnRightCommand()" classname="RoverTest" time="0.001"/>
-  <testcase name="shouldReturnInitialPositionWithNoCommand()" classname="RoverTest" time="0.002"/>
-  <testcase name="shouldReturnValidPositionWithMultipleTurnRightCommands()" classname="RoverTest" time="0.001"/>
+  <testcase name="shouldReturnNextValidPositionWithMultipleMoveCommands()" classname="RoverTest" time="0.026"/>
+  <testcase name="shouldReturnValidPositionWithMultipleTurnLeftCommands()" classname="RoverTest" time="0.001"/>
+  <testcase name="shouldReturnValidPositionWithTurnLeftCommand()" classname="RoverTest" time="0.001"/>
+  <testcase name="shouldReturnNextValidPositionWithMoveCommand()" classname="RoverTest" time="0.0"/>
+  <testcase name="shouldReturnValidPositionWithTurnRightCommand()" classname="RoverTest" time="0.0"/>
+  <testcase name="shouldReturnInitialPositionWithNoCommand()" classname="RoverTest" time="0.0"/>
+  <testcase name="shouldReturnValidPositionWithMultipleTurnRightCommands()" classname="RoverTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
