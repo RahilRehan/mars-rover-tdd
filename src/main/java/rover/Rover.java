@@ -4,8 +4,8 @@ import static processing.Processing.processPosition;
 
 public class Rover {
 
-    private final Integer xPos;
-    private final Integer yPos;
+    private Integer xPos;
+    private Integer yPos;
     private final String direction;
 
     public Rover(int xPos, int yPos, String direction) {
@@ -16,9 +16,27 @@ public class Rover {
 
     public String move(String commands) {
         if(commands.equals("")) {
-            return processPosition(this.xPos, this.yPos, this.direction);
+            return processPosition(xPos, yPos, direction);
         }
-        return null;
+        for(String command:commands.split("")){
+            if(command.equals("M")){
+                switch (direction) {
+                    case "N":
+                        yPos += 1;
+                        break;
+                    case "S":
+                        yPos -= 1;
+                        break;
+                    case "E":
+                        xPos += 1;
+                        break;
+                    default:
+                        xPos -= 1;
+                        break;
+                }
+            }
+        }
+        return processPosition(xPos, yPos, direction);
     }
 
 }
