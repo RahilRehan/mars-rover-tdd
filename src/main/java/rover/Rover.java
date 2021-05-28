@@ -14,12 +14,12 @@ public class Rover {
         this.direction = direction;
     }
 
-    public String move(String commands) {
+    public String process(String commands) {
         if(commands.equals("")) {
             return processPosition(xPos, yPos, direction);
         }
-        for(String command:commands.split("")){
-            if(command.equals("M")){
+        for(String command: getSplit(commands)){
+            if(isMove(command)){
                 switch (direction) {
                     case "N":
                         yPos += 1;
@@ -37,6 +37,14 @@ public class Rover {
             }
         }
         return processPosition(xPos, yPos, direction);
+    }
+
+    private String[] getSplit(String commands) {
+        return commands.split("");
+    }
+
+    private boolean isMove(String command){
+        return command.equals("M");
     }
 
 }

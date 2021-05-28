@@ -9,7 +9,7 @@ public class RoverTest {
         int xPos = 1, yPos = 2;
         String direction = "N", commands = "";
         Rover rover = new Rover(xPos, yPos, direction);
-        String finalDirection = rover.move(commands);
+        String finalDirection = rover.process(commands);
         assertEquals("1 2 N", finalDirection);
     }
 
@@ -18,7 +18,7 @@ public class RoverTest {
         int xPos = 1, yPos = 2;
         String direction = "N", commands = "M";
         Rover rover = new Rover(xPos, yPos, direction);
-        String finalDirection = rover.move(commands);
+        String finalDirection = rover.process(commands);
         assertEquals("1 3 N", finalDirection);
     }
 
@@ -27,7 +27,7 @@ public class RoverTest {
         int xPos = 1, yPos = 2;
         String direction = "E", commands = "MMM";
         Rover rover = new Rover(xPos, yPos, direction);
-        String finalDirection = rover.move(commands);
+        String finalDirection = rover.process(commands);
         assertEquals("4 2 E", finalDirection);
     }
 }
