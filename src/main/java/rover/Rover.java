@@ -1,15 +1,20 @@
 package rover;
 
+import utils.Command;
 import utils.Direction;
 
 import static utils.Command.*;
 import static processing.Processing.processPosition;
+import static utils.Direction.*;
 
 public class Rover {
 
     private Integer xPos;
     private Integer yPos;
     private String direction;
+    private static final Integer FORWARD=1;
+    private static final Integer BACKWARD=-1;
+
 
     public Rover(int xPos, int yPos, String direction) {
         this.xPos = xPos;
@@ -22,61 +27,68 @@ public class Rover {
             return processPosition(xPos, yPos, direction);
         }
         for(String command: getSplit(commands)){
-            if(isMove(command)){
-                switch (direction) {
-                    case Direction.NORTH:
-                        moveNorth();
-                        break;
-                    case Direction.SOUTH:
-                        moveSouth();
-                        break;
-                    case Direction.EAST:
-                        moveEast();
-                        break;
-                    default:
-                        moveWest();
-                        break;
-                }
-            }
-            else if(isRight(command)){
-                turnRight(direction);
-            }else{
-                turnLeft(direction);
+            switch (command){
+                case MOVE:
+                    move(direction);
+                    break;
+                case RIGHT:
+                    turnRight(direction);
+                    break;
+                default:
+                    turnLeft(direction);
+                    break;
             }
         }
         return processPosition(xPos, yPos, direction);
     }
 
-    private void turnLeft(String direction) {
+    private void move(String direction) {
         switch (direction) {
-            case Direction.NORTH:
-                changeDirection(Direction.WEST);
+            case NORTH:
+                moveVertical(FORWARD);
                 break;
-            case Direction.SOUTH:
-                changeDirection(Direction.EAST);
+            case SOUTH:
+                moveVertical(BACKWARD);
                 break;
-            case Direction.EAST:
-                changeDirection(Direction.NORTH);
+            case EAST:
+                moveHorizontal(FORWARD);
                 break;
             default:
-                changeDirection(Direction.SOUTH);
+                moveHorizontal(BACKWARD);
+                break;
+        }
+    }
+
+    private void turnLeft(String direction) {
+        switch (direction) {
+            case NORTH:
+                changeDirection(WEST);
+                break;
+            case SOUTH:
+                changeDirection(EAST);
+                break;
+            case EAST:
+                changeDirection(NORTH);
+                break;
+            default:
+                changeDirection(SOUTH);
                 break;
         }
     }
 
     private void turnRight(String direction) {
         switch (direction) {
-            case Direction.NORTH:
-                changeDirection(Direction.EAST);
+            case NORTH:
+                changeDirection(EAST);
                 break;
-            case Direction.SOUTH:
-                changeDirection(Direction.WEST);
+            case SOUTH:
+                changeDirection(WEST);
                 break;
-            case Direction.EAST:
-                changeDirection(Direction.SOUTH);
+            case EAST:
+                changeDirection(SOUTH);
                 break;
             default:
-                changeDirection(Direction.NORTH);
+                changeDirection(NORTH);
                 break;
         }
     }
@@ -85,20 +97,12 @@ public class Rover {
         this.direction = newDirection;
     }
 
-    private void moveWest() {
-        xPos -= 1;
+    private void moveHorizontal(Integer direction){
+        xPos += direction;
     }
 
-    private void moveEast() {
-        xPos += 1;
-    }
-
-    private void moveSouth() {
-        yPos -= 1;
-    }
-
-    private void moveNorth() {
-        yPos += 1;
+    private void moveVertical(Integer direction){
+        yPos += direction;
     }
 
 }
