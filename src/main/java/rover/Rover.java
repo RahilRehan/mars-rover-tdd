@@ -1,5 +1,7 @@
 package rover;
 
+import constants.Direction;
+import constants.Command;
 import static processing.Processing.processPosition;
 
 public class Rover {
@@ -21,13 +23,13 @@ public class Rover {
         for(String command: getSplit(commands)){
             if(isMove(command)){
                 switch (direction) {
-                    case "N":
+                    case Direction.NORTH:
                         yPos += 1;
                         break;
-                    case "S":
+                    case Direction.SOUTH:
                         yPos -= 1;
                         break;
-                    case "E":
+                    case Direction.EAST:
                         xPos += 1;
                         break;
                     default:
@@ -44,7 +46,7 @@ public class Rover {
     }
 
     private boolean isMove(String command){
-        return command.equals("M");
+        return command.equals(Command.MOVE);
     }
 
 }
