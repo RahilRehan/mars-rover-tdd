@@ -1,11 +1,15 @@
 package position;
 
+
+import exceptions.InvalidPositionException;
+
 public class Position {
 
     private final Integer xPos;
     private final Integer yPos;
 
-    public Position(Integer xPos, Integer yPos) {
+    public Position(Integer xPos, Integer yPos) throws InvalidPositionException {
+        if(xPos < 0 || yPos < 0) throw new InvalidPositionException("Negative values in constructor");
         this.xPos = xPos;
         this.yPos = yPos;
     }

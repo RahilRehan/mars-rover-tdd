@@ -1,69 +1,98 @@
+import exceptions.InvalidPositionException;
 import org.junit.jupiter.api.Test;
+import plateau.Plateau;
+import position.Position;
 import rover.Rover;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RoverTest {
+    Plateau plateau;
+    public RoverTest() throws InvalidPositionException {
+        plateau = new Plateau(new Position(5, 5));
+    }
+
     @Test
-    void shouldReturnInitialPositionWithNoCommand() {
+    void shouldReturnInitialPositionWithNoCommand() throws InvalidPositionException {
         int xPos = 1, yPos = 2;
         String direction = "N", commands = "";
-        Rover rover = new Rover(xPos, yPos, direction);
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
         String finalDirection = rover.process(commands);
         assertEquals("1 2 N", finalDirection);
     }
 
     @Test
-    void shouldReturnNextValidPositionWithMoveCommand() {
+    void shouldReturnNextValidPositionWithMoveCommand() throws InvalidPositionException {
         int xPos = 1, yPos = 2;
         String direction = "N", commands = "M";
-        Rover rover = new Rover(xPos, yPos, direction);
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
         String finalDirection = rover.process(commands);
         assertEquals("1 3 N", finalDirection);
     }
 
     @Test
-    void shouldReturnNextValidPositionWithMultipleMoveCommands() {
+    void shouldReturnNextValidPositionWithMultipleMoveCommands() throws InvalidPositionException {
         int xPos = 1, yPos = 2;
         String direction = "E", commands = "MMM";
-        Rover rover = new Rover(xPos, yPos, direction);
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
         String finalDirection = rover.process(commands);
         assertEquals("4 2 E", finalDirection);
     }
 
     @Test
-    void shouldReturnValidPositionWithTurnRightCommand() {
+    void shouldReturnValidPositionWithTurnRightCommand() throws InvalidPositionException {
         int xPos = 1, yPos = 2;
         String direction = "E", commands = "R";
-        Rover rover = new Rover(xPos, yPos, direction);
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
         String finalDirection = rover.process(commands);
         assertEquals("1 2 S", finalDirection);
     }
 
     @Test
-    void shouldReturnValidPositionWithMultipleTurnRightCommands() {
+    void shouldReturnValidPositionWithMultipleTurnRightCommands() throws InvalidPositionException {
         int xPos = 1, yPos = 2;
         String direction = "E", commands = "RRR";
-        Rover rover = new Rover(xPos, yPos, direction);
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
         String finalDirection = rover.process(commands);
         assertEquals("1 2 N", finalDirection);
     }
 
     @Test
-    void shouldReturnValidPositionWithTurnLeftCommand() {
+    void shouldReturnValidPositionWithTurnLeftCommand() throws InvalidPositionException {
         int xPos = 1, yPos = 2;
         String direction = "E", commands = "L";
-        Rover rover = new Rover(xPos, yPos, direction);
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
         String finalDirection = rover.process(commands);
         assertEquals("1 2 N", finalDirection);
     }
 
     @Test
-    void shouldReturnValidPositionWithMultipleTurnLeftCommands() {
+    void shouldReturnValidPositionWithMultipleTurnLeftCommands() throws InvalidPositionException {
         int xPos = 1, yPos = 2;
         String direction = "E", commands = "LLL";
-        Rover rover = new Rover(xPos, yPos, direction);
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
         String finalDirection = rover.process(commands);
         assertEquals("1 2 S", finalDirection);
+    }
+
+    @Test
+    void shouldNotThrowExceptionIfRoverInValidBoundsOfPlateau(){
+        int xPos = 1, yPos = 2;
+        String direction = "E";
+        assertDoesNotThrow(()->new Rover(xPos, yPos, direction, plateau));
+    }
+
+    @Test
+    void shouldThrowExceptionIfRoverNotInValidBoundsOfPlateauHorizontally(){
+        int xPos = 6, yPos = 2;
+        String direction = "E";
+        assertThrows(InvalidPositionException.class, ()->new Rover(xPos, yPos, direction, plateau));
+    }
+
+    @Test
+    void shouldThrowExceptionIfRoverNotInValidBoundsOfPlateauVertically() {
+        int xPos = 1, yPos = -4;
+        String direction = "E";
+        assertThrows(InvalidPositionException.class, ()->new Rover(xPos, yPos, direction, plateau));
     }
 }

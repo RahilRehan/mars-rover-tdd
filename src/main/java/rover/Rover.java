@@ -1,6 +1,8 @@
 package rover;
 
 
+import exceptions.InvalidPositionException;
+import plateau.Plateau;
 import position.Position;
 
 import static utils.Command.*;
@@ -8,18 +10,22 @@ import static utils.Direction.*;
 
 public class Rover {
 
+    private final Plateau plateau;
     private Position position;
     private String direction;
     private static final Integer FORWARD=1;
     private static final Integer BACKWARD=-1;
 
 
-    public Rover(int xPos, int yPos, String direction) {
+    public Rover(int xPos, int yPos, String direction, Plateau plateau) throws InvalidPositionException {
+        if(xPos < 0  || xPos > plateau.getLimit().getxPos()) throw new InvalidPositionException("Horizontally wrong position");
+        if(yPos < 0  || yPos > plateau.getLimit().getyPos()) throw new InvalidPositionException("Vertically wrong position");
         this.position = new Position(xPos, yPos);
         this.direction = direction;
+        this.plateau = plateau;
     }
 
-    public String process(String commands) {
+    public String process(String commands) throws InvalidPositionException {
         for(String command: getSplit(commands))
             switch (command) {
                 case MOVE:
@@ -37,7 +43,7 @@ public class Rover {
         return this.toString();
     }
 
-    private void move(String direction) {
+    private void move(String direction) throws InvalidPositionException {
         switch (direction) {
             case NORTH:
                 moveVertical(FORWARD);
@@ -92,11 +98,11 @@ public class Rover {
         this.direction = newDirection;
     }
 
-    private void moveHorizontal(Integer direction){
+    private void moveHorizontal(Integer direction) throws InvalidPositionException {
         position = new Position(position.getxPos()+direction, position.getyPos());
     }
 
-    private void moveVertical(Integer direction){
+    private void moveVertical(Integer direction) throws InvalidPositionException {
         position = new Position(position.getxPos(), position.getyPos()+direction);
     }
 
