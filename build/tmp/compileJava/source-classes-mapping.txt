@@ -1,8 +1,10 @@
 utils/Direction.java
  utils.Direction
-processing/Processing.java
- processing.Processing
-rover/Rover.java
- rover.Rover
 utils/Command.java
  utils.Command
+position/Position.java
+ position.Position
+plateau/Plateau.java
+ plateau.Plateau
+rover/Rover.java
+ rover.Rover

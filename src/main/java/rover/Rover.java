@@ -1,45 +1,40 @@
 package rover;
 
-import utils.Command;
-import utils.Direction;
+
+import position.Position;
 
 import static utils.Command.*;
-import static processing.Processing.processPosition;
 import static utils.Direction.*;
 
 public class Rover {
 
-    private Integer xPos;
-    private Integer yPos;
+    private Position position;
     private String direction;
     private static final Integer FORWARD=1;
     private static final Integer BACKWARD=-1;
 
 
     public Rover(int xPos, int yPos, String direction) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.position = new Position(xPos, yPos);
         this.direction = direction;
     }
 
     public String process(String commands) {
-        if(isEmpty(commands)) {
-            return processPosition(xPos, yPos, direction);
-        }
-        for(String command: getSplit(commands)){
-            switch (command){
+        for(String command: getSplit(commands))
+            switch (command) {
                 case MOVE:
                     move(direction);
                     break;
                 case RIGHT:
                     turnRight(direction);
                     break;
-                default:
+                case LEFT:
                     turnLeft(direction);
                     break;
+                default:
+                    return this.toString();
             }
-        }
-        return processPosition(xPos, yPos, direction);
+        return this.toString();
     }
 
     private void move(String direction) {
@@ -98,11 +93,15 @@ public class Rover {
     }
 
     private void moveHorizontal(Integer direction){
-        xPos += direction;
+        position = new Position(position.getxPos()+direction, position.getyPos());
     }
 
     private void moveVertical(Integer direction){
-        yPos += direction;
+        position = new Position(position.getxPos(), position.getyPos()+direction);
     }
 
+    @Override
+    public String toString() {
+        return this.position.toString() + " " + this.direction;
+    }
 }

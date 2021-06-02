@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RoverTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-05-28T16:56:22" hostname="Rahils-MacBook-Pro.local" time="0.024">
+<testsuite name="RoverTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-06-02T11:03:21" hostname="Rahils-MacBook-Pro.local" time="0.041">
   <properties/>
-  <testcase name="shouldReturnNextValidPositionWithMultipleMoveCommands()" classname="RoverTest" time="0.017"/>
-  <testcase name="shouldReturnValidPositionWithMultipleTurnLeftCommands()" classname="RoverTest" time="0.001"/>
-  <testcase name="shouldReturnValidPositionWithTurnLeftCommand()" classname="RoverTest" time="0.001"/>
+  <testcase name="shouldReturnNextValidPositionWithMultipleMoveCommands()" classname="RoverTest" time="0.034"/>
+  <testcase name="shouldReturnValidPositionWithMultipleTurnLeftCommands()" classname="RoverTest" time="0.0"/>
+  <testcase name="shouldReturnValidPositionWithTurnLeftCommand()" classname="RoverTest" time="0.0"/>
   <testcase name="shouldReturnNextValidPositionWithMoveCommand()" classname="RoverTest" time="0.001"/>
   <testcase name="shouldReturnValidPositionWithTurnRightCommand()" classname="RoverTest" time="0.001"/>
   <testcase name="shouldReturnInitialPositionWithNoCommand()" classname="RoverTest" time="0.001"/>
