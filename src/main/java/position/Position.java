@@ -14,6 +14,7 @@ public class Position {
         this.yPos = yPos;
     }
 
+
     public Integer getxPos() {
         return xPos;
     }

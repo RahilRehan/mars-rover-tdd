@@ -5,6 +5,7 @@ import exceptions.InvalidPositionException;
 import plateau.Plateau;
 import position.Position;
 
+import static plateau.Plateau.checkIfValidPosition;
 import static utils.Command.*;
 import static utils.Direction.*;
 
@@ -100,11 +101,14 @@ public class Rover {
 
     private void moveHorizontal(Integer direction) throws InvalidPositionException {
         position = new Position(position.getxPos()+direction, position.getyPos());
+        checkIfValidPosition(position, plateau);
     }
 
     private void moveVertical(Integer direction) throws InvalidPositionException {
         position = new Position(position.getxPos(), position.getyPos()+direction);
+        checkIfValidPosition(position, plateau);
     }
+
 
     @Override
     public String toString() {

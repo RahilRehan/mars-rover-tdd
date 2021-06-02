@@ -95,4 +95,38 @@ public class RoverTest {
         String direction = "E";
         assertThrows(InvalidPositionException.class, ()->new Rover(xPos, yPos, direction, plateau));
     }
+
+    @Test
+    void shouldReturnValidPositionWithMultipleCommandsOne() throws InvalidPositionException {
+        int xPos = 1, yPos = 2;
+        String direction = "N", commands = "LMLMLMLMM";
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
+        String finalDirection = rover.process(commands);
+        assertEquals("1 3 N", finalDirection);
+    }
+
+    @Test
+    void shouldReturnValidPositionWithMultipleCommandsTwo() throws InvalidPositionException {
+        int xPos = 3, yPos = 3;
+        String direction = "E", commands = "MMRMMRMRRM";
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
+        String finalDirection = rover.process(commands);
+        assertEquals("5 1 E", finalDirection);
+    }
+
+    @Test
+    void shouldThrowExceptionIfRoverGoesOutOfBoundsOfPlateauOne() throws InvalidPositionException {
+        int xPos = 4, yPos = 3;
+        String direction = "E", commands = "MMRMMRMRRM";
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
+        assertThrows(InvalidPositionException.class, ()->rover.process(commands));
+    }
+
+    @Test
+    void shouldThrowExceptionIfRoverGoesOutOfBoundsOfPlateauTwo() throws InvalidPositionException {
+        int xPos = 1, yPos = 0;
+        String direction = "N", commands = "LMM";
+        Rover rover = new Rover(xPos, yPos, direction, plateau);
+        assertThrows(InvalidPositionException.class, ()->rover.process(commands));
+    }
 }
